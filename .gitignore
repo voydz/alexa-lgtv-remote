@@ -1,6 +1,9 @@
 # osx
 .DS_Store
 
+# lgtv
+lgtv-*
+
 # js
 node_modules
 .env

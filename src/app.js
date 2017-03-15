@@ -1,28 +1,33 @@
 var Connector = require('./api/connector')
 
-var promise = require('promise')
+var Promise = require('promise')
 var alexa = require("alexa-app")
 var app = new alexa.app("lgtv-remote")
 
 var connector = new Connector()
 var remote = null
-
-app.launch(function(request, response) {
-  // Connect and attach remote handle.
-  connector.connect(function(remote) {
-    remote = remote
-  })
+connector.connect(function(res) {
+  remote = res
 })
 
-app.sessionEnded(function(request, response) {
-  // Disconnect and close remote handle.
-  connector.disconnect(function(remote) {
-    remote = null
-  })
-
-  // cleanup the user's server-side session
-  logout(request.userId)
-})
+// app.launch(function(request, response) {
+//   if (remote) return
+//
+//   // Connect and attach remote handle.
+//   connector.connect(function(remote) {
+//     remote = remote
+//   })
+// })
+//
+// app.sessionEnded(function(request, response) {
+//   // Disconnect and close remote handle.
+//   connector.disconnect(function(remote) {
+//     remote = null
+//   })
+//
+//   // cleanup the user's server-side session
+//   logout(request.userId)
+// })
 
 app.intent("TurnDeviceOn", {
     "slots": {},
@@ -32,11 +37,18 @@ app.intent("TurnDeviceOn", {
   },
   function(request, response) {
     console.log('turn device on')
+    var turnOn = new Promise(function(fulfill, reject) {
+      connector.wake(function(err) {
+        if (err) reject(err)
+        else fulfill()
+      })
+    })
 
-    return promise.denodify(remote.turnOn)
+    return turnOn
       .then(function() {
         return response.say('OK.')
-      }, function () {
+      }, function (err) {
+        console.log(err)
         return response.say('Es ist ein problem mit dem gerät aufgetreten.')
       })
   }
@@ -50,11 +62,18 @@ app.intent("TurnDeviceOff", {
   },
   function(request, response) {
     console.log('turn device off')
+    var turnOff = new Promise(function(fulfill, reject) {
+      remote.turnOff(function(err, res) {
+        if (err) reject(err)
+        else fulfill(res)
+      })
+    })
 
-    return promise.denodify(remote.turnOff)
-      .then(function() {
+    return turnOff
+      .then(function(res) {
         return response.say('OK.')
-      }, function () {
+      }, function (err) {
+        console.log(err)
         return response.say('Es ist ein problem mit dem gerät aufgetreten.')
       })
   }
