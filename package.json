@@ -1,0 +1,30 @@
+{
+  "name": "alexa-lgtv-remote",
+  "version": "1.0.0",
+  "description": "Control your webOS powered LG TV with amazon's alexa.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "docs": "bin/docgen.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/voydz/alexa-lgtv-remote.git"
+  },
+  "keywords": [
+    "alexa",
+    "lg",
+    "tv",
+    "lgtv",
+    "webOS"
+  ],
+  "author": "voydz",
+  "license": "MIT",
+  "dependencies": {
+    "alexa-app": "^3.1.0",
+    "dotenv": "^4.0.0",
+    "express": "^4.14.1",
+    "lgtv2": "^1.2.0",
+    "promise": "^7.1.1"
+  }
+}

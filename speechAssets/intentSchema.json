@@ -1,0 +1,10 @@
+{
+   "intents": [
+      {
+         "intent": "TurnDeviceOn"
+      },
+      {
+         "intent": "TurnDeviceOff"
+      }
+   ]
+}
