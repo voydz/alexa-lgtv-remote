@@ -6,7 +6,8 @@
   "scripts": {
     "start": "gulp build && node dist/index.js",
     "test": "gulp lint",
-    "dev": "gulp serve",
+    "dev": "flow-typed install && npm run start",
+    "watch": "gulp serve",
     "docs": "gulp build && dist/bin/docgen.js"
   },
   "repository": {

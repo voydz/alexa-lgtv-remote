@@ -11,7 +11,7 @@ var app = new alexa.app('lgtv-remote');
 var connector = new Connector();
 var remote: ?Remote = null;
 
-connector.connect((res) => {
+connector.connect((res: Remote) => {
     remote = res;
 });
 

@@ -10,6 +10,36 @@ class Remote {
         this.connector = connector;
     }
 
+    audioMute(state: bool, callback: ?Function): void {
+        this.request('ssap://audio/setMute', {mute: state}, (err, res, tv) => {
+            if (callback) callback(err, res);
+        })
+    }
+
+    mediaPlay(callback: ?Function): void {
+        this.request('ssap://media.controls/play', (err, res, tv) => {
+            if (callback) callback(err, res);
+        });
+    }
+
+    mediaPause(callback: ?Function): void {
+        this.request('ssap://media.controls/pause', (err, res, tv) => {
+            if (callback) callback(err, res);
+        });
+    }
+
+    startApp(appId: string, callback: ?Function): void {
+        this.request('ssap://system.launcher/launch', {id: appId}, (err, res, tv) => {
+            if (callback) callback(err, res);
+        });
+    }
+
+    switchInput(callback: ?Function): void {
+        this.request('ssap://tv/switchInput', (err, res, tv) => {
+            if (callback) callback(err, res);
+        });
+    }
+
     turnOff(callback: ?Function): void {
         this.request('ssap://system/turnOff', (err, res, tv) => {
             if (callback) callback(err, res);
@@ -19,7 +49,7 @@ class Remote {
         });
     }
 
-    request(command: string, callback: ?Function): void {
+    request(command: string, payload: any, callback: ?Function): void {
         // Check device connection.
         this.connectedOrFail();
 

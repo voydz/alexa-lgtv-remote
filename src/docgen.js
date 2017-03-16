@@ -5,10 +5,10 @@ import fs from 'fs';
 import path from 'path';
 
 class Docgen {
-    alexaApp: any;
+    alexaApp: Object;
     config: Object;
 
-    constructor(alexaApp: any, config: ?Object) {
+    constructor(alexaApp: Object, config: ?Object) {
         this.alexaApp = alexaApp;
         this.config = config || {
             'schema_path': 'speechAssets/intentSchema.json',
