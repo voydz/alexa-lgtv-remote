@@ -4,10 +4,9 @@
   "description": "Control your webOS powered LG TV with amazon's alexa.",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint .",
-    "watch": "gulp watch",
     "start": "gulp build && node dist/index.js",
-    "dev": "gulp build && nodemon dist/index.js",
+    "test": "gulp lint",
+    "dev": "gulp serve",
     "docs": "gulp build && dist/bin/docgen.js"
   },
   "repository": {
@@ -42,6 +41,7 @@
     "flow-typed": "^2.0.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
+    "gulp-eslint": "^3.0.1",
     "merge-stream": "^1.0.1",
     "nodemon": "^1.11.0"
   }

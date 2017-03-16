@@ -1,8 +1,17 @@
 const gulp = require('gulp');
 const babel = require('gulp-babel');
+const eslint = require('gulp-eslint');
 const merge = require('merge-stream');
+const nodemon = require('nodemon');
 
-gulp.task('build', () => {
+gulp.task('lint', () => {
+    return gulp.src(['**/*.js'])
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError());
+});
+
+gulp.task('build', ['lint'], () => {
     var src = gulp.src('src/**/*.js')
         .pipe(babel())
         .pipe(gulp.dest('dist/src'));
@@ -24,4 +33,10 @@ gulp.task('watch', function () {
         'bin/**/*.js',
         'src/**/*.js',
     ], ['build']);
+});
+
+gulp.task('serve', ['watch'], function () {
+    return nodemon({
+        script: 'dist/index.js',
+    });
 });
