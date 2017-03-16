@@ -1,33 +1,19 @@
-var Connector = require('./api/connector')
+/* @flow */
+'use strict'
+
+import Connector from './api/connector'
+import Remote from './api/remote'
 
 var Promise = require('promise')
 var alexa = require("alexa-app")
 var app = new alexa.app("lgtv-remote")
 
 var connector = new Connector()
-var remote = null
-connector.connect(function(res) {
+var remote: ?Remote = null
+
+connector.connect((res) => {
   remote = res
 })
-
-// app.launch(function(request, response) {
-//   if (remote) return
-//
-//   // Connect and attach remote handle.
-//   connector.connect(function(remote) {
-//     remote = remote
-//   })
-// })
-//
-// app.sessionEnded(function(request, response) {
-//   // Disconnect and close remote handle.
-//   connector.disconnect(function(remote) {
-//     remote = null
-//   })
-//
-//   // cleanup the user's server-side session
-//   logout(request.userId)
-// })
 
 app.intent("TurnDeviceOn", {
     "slots": {},
@@ -63,6 +49,7 @@ app.intent("TurnDeviceOff", {
   function(request, response) {
     console.log('turn device off')
     var turnOff = new Promise(function(fulfill, reject) {
+      if (remote == null) return
       remote.turnOff(function(err, res) {
         if (err) reject(err)
         else fulfill(res)

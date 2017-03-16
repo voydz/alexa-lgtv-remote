@@ -5,5 +5,7 @@
 lgtv-*
 
 # js
+dist
+flow-typed
 node_modules
 .env

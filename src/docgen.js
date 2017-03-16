@@ -1,42 +1,48 @@
-var fs = require('fs')
-var path = require('path')
+/* @flow */
+'use strict'
 
-var Docgen = function(alexaApp, config) {
-  this.alexaApp = alexaApp
-  this.config = config || {
-    'schema_path': 'speechAssets/intentSchema.json',
-    'utterances_path': 'speechAssets/SampleUtterances.txt'
+import fs from 'fs'
+import path from 'path'
+
+class Docgen {
+  alexaApp: any;
+  config: Object;
+
+  constructor(alexaApp: any, config: ?Object) {
+    this.alexaApp = alexaApp
+    this.config = config || {
+      'schema_path': 'speechAssets/intentSchema.json',
+      'utterances_path': 'speechAssets/SampleUtterances.txt'
+    }
   }
-};
 
-Docgen.prototype.generate = function() {
-  this.saveSchema()
-  this.saveUtterances()
-}
+  generate(): void {
+    this.saveSchema()
+    this.saveUtterances()
+  }
 
-Docgen.prototype.saveSchema = function() {
-  var schema = this.alexaApp.schema()
-  this.writeFile(this.config.schema_path, schema)
-}
+  saveSchema(): void {
+    var schema = this.alexaApp.schema()
+    this.writeFile(this.config.schema_path, schema)
+  }
 
-Docgen.prototype.saveUtterances = function() {
-  var utterances = this.alexaApp.utterances()
-  this.writeFile(this.config.utterances_path, utterances)
-}
+  saveUtterances(): void {
+    var utterances = this.alexaApp.utterances()
+    this.writeFile(this.config.utterances_path, utterances)
+  }
 
-Docgen.prototype.writeFile = function(file, contents) {
-  this.ensureDirExists(file)
-
-  fs.writeFile(file, contents, (err) => {
-    if (err) throw err;
+  writeFile(file: string, contents: string): void {
+    this.ensureDirExists(file)
+    fs.writeFileSync(file, contents)
+    
     console.log('Wrote '+ contents.length +' bytes to \'' + file + '\' sucessfully.');
-  })
-}
+  }
 
-Docgen.prototype.ensureDirExists = function(file) {
-  const dir = path.dirname(file)
-  if (!fs.existsSync(dir)){
-    fs.mkdirSync(dir)
+  ensureDirExists(file: string): void {
+    const dir = path.dirname(file)
+    if (!fs.existsSync(dir)){
+      fs.mkdirSync(dir)
+    }
   }
 }
 

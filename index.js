@@ -1,4 +1,8 @@
+/* @flow */
+'use strict'
+
 require('dotenv').config();
+const port: string = process.env.PORT || '3000';
 
 var alexaApp = require("./src/app");
 var express = require("express");
@@ -9,6 +13,6 @@ alexaApp.express({
   expressApp: app,
 });
 
-app.listen(process.env.PORT, function () {
-  console.log('alexa-lgtv-remote listening on port ' + process.env.PORT + '!');
+app.listen(port, () => {
+  console.log('alexa-lgtv-remote listening on port ' + port + '!');
 });

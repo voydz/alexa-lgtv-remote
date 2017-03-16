@@ -1,45 +1,52 @@
-var lgtv = require('lgtv2')
-var wol = require('wake_on_lan')
-var Remote = require('./remote')
+/* @flow */
+'use strict'
 
-var Connector = function(config) {
-  this.config = config || {
-    url: process.env.TV_SOCKET
+import lgtv from 'lgtv2'
+import wol from 'wake_on_lan'
+import Remote from './remote'
+
+class Connector {
+  tv: Object;
+  config: Object;
+  connected: bool;
+
+  constructor(config: ?Object) {
+    this.config = config || {
+      url: process.env.TV_SOCKET
+    }
+
+    this.connected = false
   }
 
-  this.connected = false
-}
+  wake(callback: ?Function): void {
+    wol.wake(process.env.TV_MAC, callback)
+  }
 
-Connector.prototype.wake = function(callback) {
-  wol.wake(process.env.TV_MAC, callback)
-}
+  connect(callback: ?Function): void {
+    // Connect to the device.
+    this.tv = lgtv(this.config)
 
-Connector.prototype.connect = function(callback) {
-  // Connect to the device.
-  this.tv = lgtv(this.config)
+    this.tv.on('connect', () => {
+      // Set connection state.
+      this.connected = true
 
-  var self = this
-  this.tv.on('connect', function () {
-    // Set connection state.
-    self.connected = true
+      // Call the callback with the remote.
+      if (callback) callback(new Remote(this))
+    })
+  }
 
-    // Call the callback with the remote.
-    if (callback) callback(new Remote(self))
-  })
-}
+  disconnect(callback: ?Function): void {
+    // Disconnect from device.
+    this.tv.disconnect();
 
-Connector.prototype.disconnect = function(callback) {
-  // Disconnect from device.
-  this.tv.disconnect();
+    this.tv.on('disconnect', () => {
+      // Set connection state.
+      this.connected = false
 
-  var self = this
-  this.tv.on('disconnect', function () {
-    // Set connection state.
-    self.connected = false
-
-    // Call the callback with the remote.
-    if (callback) callback()
-  })
+      // Call the callback with the remote.
+      if (callback) callback()
+    })
+  }
 }
 
 module.exports = Connector;
