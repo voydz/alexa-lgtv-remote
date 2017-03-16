@@ -1,40 +1,39 @@
 /* @flow */
-'use strict'
+'use strict';
 
-import lgtv from 'lgtv2'
-import Connector from './connector'
+import Connector from './connector';
 
 class Remote {
-  connector: Connector
+    connector: Connector;
 
-  constructor(connector: Connector) {
-    this.connector = connector
-  }
+    constructor(connector: Connector) {
+        this.connector = connector;
+    }
 
-  turnOff(callback: ?Function): void {
-    this.request('ssap://system/turnOff', (err, res, tv) => {
-        if (callback) callback(err, res)
+    turnOff(callback: ?Function): void {
+        this.request('ssap://system/turnOff', (err, res, tv) => {
+            if (callback) callback(err, res);
 
-        // Auto disconnect.
-        tv.disconnect()
-    })
-  }
+            // Auto disconnect.
+            tv.disconnect();
+        });
+    }
 
-  request(command: string, callback: ?Function): void {
-    // Check device connection.
-    this.connectedOrFail()
+    request(command: string, callback: ?Function): void {
+        // Check device connection.
+        this.connectedOrFail();
 
-    // Execute request on device.
-    this.connector.tv.request(command, (err, res) => {
-        // Custom callback.
-        if (callback) callback(err, res, this.connector.tv)
-    })
-  }
+        // Execute request on device.
+        this.connector.tv.request(command, (err, res) => {
+            // Custom callback.
+            if (callback) callback(err, res, this.connector.tv);
+        });
+    }
 
-  connectedOrFail(): void {
-    if (!this.connector.connected)
-      throw new Error('device not connected')
-  }
+    connectedOrFail(): void {
+        if (!this.connector.connected)
+            throw new Error('device not connected');
+    }
 }
 
-module.exports = Remote
+export default Remote;

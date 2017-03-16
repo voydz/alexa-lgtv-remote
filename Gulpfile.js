@@ -3,15 +3,15 @@ const babel = require('gulp-babel');
 const merge = require('merge-stream');
 
 gulp.task('build', () => {
-     var src = gulp.src('src/**/*.js')
+    var src = gulp.src('src/**/*.js')
         .pipe(babel())
         .pipe(gulp.dest('dist/src'));
 
-     var bin = gulp.src('bin/**/*.js')
+    var bin = gulp.src('bin/**/*.js')
         .pipe(babel())
         .pipe(gulp.dest('dist/bin'));
 
-     var index = gulp.src('index.js')
+    var index = gulp.src('index.js')
         .pipe(babel())
         .pipe(gulp.dest('dist/'));
 

@@ -1,69 +1,67 @@
 /* @flow */
-'use strict'
+'use strict';
 
-import Connector from './api/connector'
-import Remote from './api/remote'
+import Connector from './api/connector';
+import Remote from './api/remote';
 
-var Promise = require('promise')
-var alexa = require("alexa-app")
-var app = new alexa.app("lgtv-remote")
+import Promise from 'promise';
+import alexa from 'alexa-app';
+var app = new alexa.app('lgtv-remote');
 
-var connector = new Connector()
-var remote: ?Remote = null
+var connector = new Connector();
+var remote: ?Remote = null;
 
 connector.connect((res) => {
-  remote = res
-})
+    remote = res;
+});
 
-app.intent("TurnDeviceOn", {
-    "slots": {},
-    "utterances": [
-      "{schalte|mache} {fernseher|tv|glotze} {an|ein}",
+app.intent('TurnDeviceOn', {
+    'slots': {},
+    'utterances': [
+        '{schalte|mache} {fernseher|tv|glotze} {an|ein}',
     ]
-  },
-  function(request, response) {
-    console.log('turn device on')
+},
+function(request, response) {
+    console.log('turn device on');
     var turnOn = new Promise(function(fulfill, reject) {
-      connector.wake(function(err) {
-        if (err) reject(err)
-        else fulfill()
-      })
-    })
+        connector.wake(function(err) {
+            if (err) reject(err);
+            else fulfill();
+        });
+    });
 
     return turnOn
-      .then(function() {
-        return response.say('OK.')
-      }, function (err) {
-        console.log(err)
-        return response.say('Es ist ein problem mit dem gerät aufgetreten.')
-      })
-  }
-)
+    .then(function() {
+        return response.say('OK.');
+    }, function (err) {
+        console.log(err);
+        return response.say('Es ist ein problem mit dem gerät aufgetreten.');
+    });
+});
 
-app.intent("TurnDeviceOff", {
-    "slots": {},
-    "utterances": [
-      "{schalte|mache} {fernseher|tv|glotze} aus",
+app.intent('TurnDeviceOff', {
+    'slots': {},
+    'utterances': [
+        '{schalte|mache} {fernseher|tv|glotze} aus',
     ]
-  },
-  function(request, response) {
-    console.log('turn device off')
+},
+function(request, response) {
+    console.log('turn device off');
     var turnOff = new Promise(function(fulfill, reject) {
-      if (remote == null) return
-      remote.turnOff(function(err, res) {
-        if (err) reject(err)
-        else fulfill(res)
-      })
-    })
+        if (remote == null) return;
+        remote.turnOff(function(err, res) {
+            if (err) reject(err);
+            else fulfill(res);
+        });
+    });
 
     return turnOff
-      .then(function(res) {
-        return response.say('OK.')
-      }, function (err) {
-        console.log(err)
-        return response.say('Es ist ein problem mit dem gerät aufgetreten.')
-      })
-  }
-)
+    .then(function() {
+        return response.say('OK.');
+    }, function (err) {
+        console.log(err);
+        return response.say('Es ist ein problem mit dem gerät aufgetreten.');
+    });
+});
 
-module.exports = app
+export default app;

@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /* @flow */
-'use strict'
+'use strict';
 
-var alexaApp = require('../src/app');
+import alexaApp from '../src/app';
+import Docgen from '../src/docgen';
 
-var Docgen = require("../src/docgen");
-new Docgen(alexaApp).generate()
+new Docgen(alexaApp).generate();
