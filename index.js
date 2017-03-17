@@ -2,7 +2,7 @@
 'use strict';
 
 require('dotenv').config();
-const port: string = process.env.PORT || '3000';
+const port = process.env.PORT || '3000';
 
 import alexaApp from './src/app';
 import express from 'express';

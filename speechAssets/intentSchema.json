@@ -5,6 +5,39 @@
       },
       {
          "intent": "TurnDeviceOff"
+      },
+      {
+         "intent": "SwitchDeviceMute"
+      },
+      {
+         "intent": "SwitchDeviceUnmute"
+      },
+      {
+         "intent": "LaunchDeviceApp",
+         "slots": [
+            {
+               "name": "app_id",
+               "type": "APP_IDS"
+            }
+         ]
+      },
+      {
+         "intent": "SwitchDeviceInput",
+         "slots": [
+            {
+               "name": "input_id",
+               "type": "INPUT_IDS"
+            }
+         ]
+      },
+      {
+         "intent": "ControlDeviceMediaPlay"
+      },
+      {
+         "intent": "ControlDeviceMediaPause"
+      },
+      {
+         "intent": "ControlDeviceMediaStop"
       }
    ]
 }

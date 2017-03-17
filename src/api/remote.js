@@ -1,7 +1,9 @@
 /* @flow */
 'use strict';
 
+import Promise from 'promise';
 import Connector from './connector';
+import Lookup from './lookup';
 
 class Remote {
     connector: Connector;
@@ -10,53 +12,71 @@ class Remote {
         this.connector = connector;
     }
 
-    audioMute(state: bool, callback: ?Function): void {
-        this.request('ssap://audio/setMute', {mute: state}, (err, res, tv) => {
-            if (callback) callback(err, res);
-        })
+    audioMute(state: bool): Promise {
+        return this.request('ssap://audio/setMute', {mute: state});
     }
 
-    mediaPlay(callback: ?Function): void {
-        this.request('ssap://media.controls/play', (err, res, tv) => {
-            if (callback) callback(err, res);
-        });
+    mediaPlay(): Promise {
+        return this.request('ssap://media.controls/play');
     }
 
-    mediaPause(callback: ?Function): void {
-        this.request('ssap://media.controls/pause', (err, res, tv) => {
-            if (callback) callback(err, res);
-        });
+    mediaPause(): Promise {
+        return this.request('ssap://media.controls/pause');
     }
 
-    startApp(appId: string, callback: ?Function): void {
-        this.request('ssap://system.launcher/launch', {id: appId}, (err, res, tv) => {
-            if (callback) callback(err, res);
-        });
+    mediaStop(): Promise {
+        return this.request('ssap://media.controls/stop');
     }
 
-    switchInput(callback: ?Function): void {
-        this.request('ssap://tv/switchInput', (err, res, tv) => {
-            if (callback) callback(err, res);
-        });
+    startApp(app: string): Promise {
+        const appId = Lookup.app(app);
+        return this.request('ssap://system.launcher/launch', {id: appId});
     }
 
-    turnOff(callback: ?Function): void {
-        this.request('ssap://system/turnOff', (err, res, tv) => {
-            if (callback) callback(err, res);
-
-            // Auto disconnect.
-            tv.disconnect();
-        });
+    closeApp(app: string): Promise {
+        const appId = Lookup.app(app);
+        return this.request('ssap://system.launcher/close', {id: appId});
     }
 
-    request(command: string, payload: any, callback: ?Function): void {
+    getAppList(): Promise {
+        // returns res.launchPoints with all necessary info
+        return this.request('ssap://com.webos.applicationManager/listLaunchPoints');
+    }
+
+    switchInput(inputId: string): Promise {
+        return this.request('ssap://tv/switchInput', {id: inputId});
+    }
+
+    turnOn(): Promise {
+        // To turn device on we use wake on lan.
+        return this.connector.wake()
+            .then(() => {
+                // Auto connect.
+                return this.connector.connect();
+            });
+    }
+
+    turnOff(): Promise {
+        return this.request('ssap://system/turnOff')
+            .then(() => {
+                // Auto disconnect.
+                return this.connector.disconnect();
+            });
+    }
+
+    request(command: string, payload: any): Promise {
         // Check device connection.
         this.connectedOrFail();
 
-        // Execute request on device.
-        this.connector.tv.request(command, (err, res) => {
-            // Custom callback.
-            if (callback) callback(err, res, this.connector.tv);
+        // Log requests.
+        console.log('Fire of request \'' + command + '\' with payload:', payload);
+
+        return new Promise((fulfill, reject) => {
+            // Execute request on device.
+            this.connector.tv.request(command, payload, (err, res) => {
+                if (err) reject(err);
+                else fulfill(this.connector.tv, res);
+            });
         });
     }
 

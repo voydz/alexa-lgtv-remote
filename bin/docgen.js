@@ -6,3 +6,5 @@ import alexaApp from '../src/app';
 import Docgen from '../src/docgen';
 
 new Docgen(alexaApp).generate();
+
+process.exit(0);

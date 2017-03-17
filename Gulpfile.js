@@ -1,6 +1,6 @@
-const gulp = require('gulp');
 const babel = require('gulp-babel');
 const eslint = require('gulp-eslint');
+const gulp = require('gulp');
 const merge = require('merge-stream');
 const nodemon = require('nodemon');
 

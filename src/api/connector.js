@@ -3,48 +3,60 @@
 
 import lgtv from 'lgtv2';
 import wol from 'wake_on_lan';
-import Remote from './remote';
+import Promise from 'promise';
 
 class Connector {
     tv: Object;
     config: Object;
     connected: bool;
 
-    constructor(config: ?Object) {
-        this.config = config || {
-            url: process.env.TV_SOCKET
-        };
+    constructor(config: Object) {
+        this.config = config;
 
+        // set default vals
         this.connected = false;
     }
 
-    wake(callback: ?Function): void {
-        wol.wake(process.env.TV_MAC, callback);
-    }
-
-    connect(callback: ?Function): void {
-        // Connect to the device.
-        this.tv = lgtv(this.config);
-
-        this.tv.on('connect', () => {
-            // Set connection state.
-            this.connected = true;
-
-            // Call the callback with the remote.
-            if (callback) callback(new Remote(this));
+    wake(): Promise {
+        return new Promise((fulfill, reject) => {
+            wol.wake(this.config.mac, (err) => {
+                if (err) reject(err);
+                else fulfill();
+            });
         });
     }
 
-    disconnect(callback: ?Function): void {
+    connect(): Promise {
+        // Connect to the device.
+        this.tv = lgtv(this.config);
+
+        return new Promise((fulfill, reject) => {
+            this.tv.on('error', (err) => {
+                // Connection lost watcher.
+                this.connected = false;
+                reject(err);
+            });
+
+            this.tv.on('connect', () => {
+                // Set connection state.
+                this.connected = true;
+                fulfill(this.tv);
+            });
+        });
+    }
+
+    disconnect(): Promise {
         // Disconnect from device.
         this.tv.disconnect();
 
-        this.tv.on('disconnect', () => {
-            // Set connection state.
-            this.connected = false;
+        return new Promise((fulfill, reject) => {
+            this.tv.on('close', (err) => {
+                // Set connection state.
+                this.connected = false;
 
-            // Call the callback with the remote.
-            if (callback) callback();
+                if (err) reject(err);
+                else fulfill();
+            });
         });
     }
 }

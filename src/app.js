@@ -1,67 +1,91 @@
 /* @flow */
 'use strict';
 
-import Connector from './api/connector';
-import Remote from './api/remote';
+import {
+    TurnDeviceOn,
+    TurnDeviceOff,
+    SwitchDeviceMute,
+    SwitchDeviceUnmute,
+    LaunchDeviceApp,
+    SwitchDeviceInput,
+    ControlDeviceMediaPlay,
+    ControlDeviceMediaPause,
+    ControlDeviceMediaStop
+} from './dispatcher';
 
-import Promise from 'promise';
 import alexa from 'alexa-app';
-var app = new alexa.app('lgtv-remote');
-
-var connector = new Connector();
-var remote: ?Remote = null;
-
-connector.connect((res: Remote) => {
-    remote = res;
-});
+const app = new alexa.app('lgtv-remote');
 
 app.intent('TurnDeviceOn', {
     'slots': {},
     'utterances': [
         '{schalte|mache} {fernseher|tv|glotze} {an|ein}',
     ]
-},
-function(request, response) {
-    console.log('turn device on');
-    var turnOn = new Promise(function(fulfill, reject) {
-        connector.wake(function(err) {
-            if (err) reject(err);
-            else fulfill();
-        });
-    });
-
-    return turnOn
-    .then(function() {
-        return response.say('OK.');
-    }, function (err) {
-        console.log(err);
-        return response.say('Es ist ein problem mit dem gerät aufgetreten.');
-    });
-});
+}, TurnDeviceOn);
 
 app.intent('TurnDeviceOff', {
     'slots': {},
     'utterances': [
         '{schalte|mache} {fernseher|tv|glotze} aus',
     ]
-},
-function(request, response) {
-    console.log('turn device off');
-    var turnOff = new Promise(function(fulfill, reject) {
-        if (remote == null) return;
-        remote.turnOff(function(err, res) {
-            if (err) reject(err);
-            else fulfill(res);
-        });
-    });
+}, TurnDeviceOff);
 
-    return turnOff
-    .then(function() {
-        return response.say('OK.');
-    }, function (err) {
-        console.log(err);
-        return response.say('Es ist ein problem mit dem gerät aufgetreten.');
-    });
-});
+app.intent('SwitchDeviceMute', {
+    'slots': {},
+    'utterances': [
+        'schalte {fernseher|tv} {lautlos|stumm}',
+    ]
+}, SwitchDeviceMute);
+
+app.intent('SwitchDeviceUnmute', {
+    'slots': {},
+    'utterances': [
+        'schalte {fernseher|tv} laut',
+        'hebe {lautlos|stumm|stummschaltung} auf',
+    ]
+}, SwitchDeviceUnmute);
+
+app.intent('LaunchDeviceApp', {
+    'slots': {
+        'app_id': 'APP_IDS'
+    },
+    'utterances': [
+        '{starte|öffne} die {app|anwendung} {-|app_id}',
+        '{starte|öffne} die {-|app_id} {app|anwendung}',
+    ]
+}, LaunchDeviceApp);
+
+app.intent('SwitchDeviceInput', {
+    'slots': {
+        'input_id': 'INPUT_IDS'
+    },
+    'utterances': [
+        'wechsle {eingang|input} {zu|nach} {-|input_id}',
+        'wechsle {zu|zur|zum} {-|input_id}',
+    ]
+}, SwitchDeviceInput);
+
+app.intent('ControlDeviceMediaPlay', {
+    'slots': {},
+    'utterances': [
+        'starte wiedergabe',
+        'setze wiedergabe fort',
+    ]
+}, ControlDeviceMediaPlay);
+
+app.intent('ControlDeviceMediaPause', {
+    'slots': {},
+    'utterances': [
+        'pausiere wiedergabe',
+    ]
+}, ControlDeviceMediaPause);
+
+app.intent('ControlDeviceMediaStop', {
+    'slots': {},
+    'utterances': [
+        'stoppe wiedergabe',
+        'halte wiedergabe an',
+    ]
+}, ControlDeviceMediaStop);
 
 export default app;

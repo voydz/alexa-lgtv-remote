@@ -28,6 +28,12 @@ class Docgen {
 
     saveUtterances(): void {
         var utterances = this.alexaApp.utterances();
+
+        // This will replace all tabs with spaces.
+        // The alexa dev console does not
+        // like tabs and so do I.
+        utterances = utterances.replace(/\t/g, ' ');
+        
         this.writeFile(this.config.utterances_path, utterances);
     }
 

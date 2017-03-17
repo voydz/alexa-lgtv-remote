@@ -1,18 +1,47 @@
-TurnDeviceOn	schalte fernseher an
-TurnDeviceOn	mache fernseher an
-TurnDeviceOn	schalte tv an
-TurnDeviceOn	mache tv an
-TurnDeviceOn	schalte glotze an
-TurnDeviceOn	mache glotze an
-TurnDeviceOn	schalte fernseher ein
-TurnDeviceOn	mache fernseher ein
-TurnDeviceOn	schalte tv ein
-TurnDeviceOn	mache tv ein
-TurnDeviceOn	schalte glotze ein
-TurnDeviceOn	mache glotze ein
-TurnDeviceOff	schalte fernseher aus
-TurnDeviceOff	mache fernseher aus
-TurnDeviceOff	schalte tv aus
-TurnDeviceOff	mache tv aus
-TurnDeviceOff	schalte glotze aus
-TurnDeviceOff	mache glotze aus
+TurnDeviceOn schalte fernseher an
+TurnDeviceOn mache fernseher an
+TurnDeviceOn schalte tv an
+TurnDeviceOn mache tv an
+TurnDeviceOn schalte glotze an
+TurnDeviceOn mache glotze an
+TurnDeviceOn schalte fernseher ein
+TurnDeviceOn mache fernseher ein
+TurnDeviceOn schalte tv ein
+TurnDeviceOn mache tv ein
+TurnDeviceOn schalte glotze ein
+TurnDeviceOn mache glotze ein
+TurnDeviceOff schalte fernseher aus
+TurnDeviceOff mache fernseher aus
+TurnDeviceOff schalte tv aus
+TurnDeviceOff mache tv aus
+TurnDeviceOff schalte glotze aus
+TurnDeviceOff mache glotze aus
+SwitchDeviceMute schalte fernseher lautlos
+SwitchDeviceMute schalte tv lautlos
+SwitchDeviceMute schalte fernseher stumm
+SwitchDeviceMute schalte tv stumm
+SwitchDeviceUnmute schalte fernseher laut
+SwitchDeviceUnmute schalte tv laut
+SwitchDeviceUnmute hebe lautlos auf
+SwitchDeviceUnmute hebe stumm auf
+SwitchDeviceUnmute hebe stummschaltung auf
+LaunchDeviceApp starte die app {app_id}
+LaunchDeviceApp öffne die app {app_id}
+LaunchDeviceApp starte die anwendung {app_id}
+LaunchDeviceApp öffne die anwendung {app_id}
+LaunchDeviceApp starte die {app_id} app
+LaunchDeviceApp öffne die {app_id} app
+LaunchDeviceApp starte die {app_id} anwendung
+LaunchDeviceApp öffne die {app_id} anwendung
+SwitchDeviceInput wechsle eingang zu {input_id}
+SwitchDeviceInput wechsle input zu {input_id}
+SwitchDeviceInput wechsle eingang nach {input_id}
+SwitchDeviceInput wechsle input nach {input_id}
+SwitchDeviceInput wechsle zu {input_id}
+SwitchDeviceInput wechsle zur {input_id}
+SwitchDeviceInput wechsle zum {input_id}
+ControlDeviceMediaPlay starte wiedergabe
+ControlDeviceMediaPlay wiedergabe fortsetzen
+ControlDeviceMediaPause pausiere wiedergabe
+ControlDeviceMediaStop stoppe wiedergabe
+ControlDeviceMediaStop halte wiedergabe an

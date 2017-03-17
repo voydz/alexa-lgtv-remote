@@ -6,6 +6,6 @@ Control your webOS powered LG TV with amazon's alexa. This is a small DIY smart 
 
 * [x] Turn on/off device
 * [ ] Volume status, turn up/down
-* [ ] Media player play/pause/close
-* [ ] Launch apps
-* [ ] Switch inputs
+* [x] Media player play/pause/close
+* [x] Launch apps
+* [x] Switch inputs
