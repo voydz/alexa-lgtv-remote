@@ -9,6 +9,6 @@ env:
   - CXX=g++-4.8
 
 before_script:
-  - yarn install -g gulp
+  - npm install -g gulp
 
 script: gulp build
