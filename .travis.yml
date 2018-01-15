@@ -3,11 +3,12 @@ language: node_js
 node_js:
   - "7"
   - "8"
+  - "9"
 
 env:
   - CXX=g++-4.8
 
 before_script:
-  - npm install -g gulp
+  - yarn install -g gulp
 
 script: gulp build

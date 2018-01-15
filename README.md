@@ -1,4 +1,4 @@
-# Alexa LG TV Remote
+# Alexa LG TV Remote [![Build Status](https://travis-ci.org/voydz/alexa-lgtv-remote.svg?branch=master)](https://travis-ci.org/voydz/alexa-lgtv-remote)
 
 Control your webOS powered LG TV with amazon's alexa. This is a small DIY smart home project born out of lazyness and curiosity.
 
