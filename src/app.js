@@ -19,29 +19,32 @@ const app = new alexa.app('lgtv-remote');
 app.intent('TurnDeviceOn', {
     'slots': {},
     'utterances': [
-        '{schalte|mache} {fernseher|tv|glotze} {an|ein}',
+        'on',
+        '{ |to} turn on { |tv}',
     ]
 }, TurnDeviceOn);
 
 app.intent('TurnDeviceOff', {
     'slots': {},
     'utterances': [
-        '{schalte|mache} {fernseher|tv|glotze} aus',
+        'off',
+        '{ |to} turn off { |tv}',
     ]
 }, TurnDeviceOff);
 
 app.intent('SwitchDeviceMute', {
     'slots': {},
     'utterances': [
-        'schalte {fernseher|tv} {lautlos|stumm}',
+        '{ |to} mute { |tv}',
+        'turn on mute',
     ]
 }, SwitchDeviceMute);
 
 app.intent('SwitchDeviceUnmute', {
     'slots': {},
     'utterances': [
-        'schalte {fernseher|tv} laut',
-        'hebe {lautlos|stumm|stummschaltung} auf',
+        '{ | to} {un mute|unmute} { |tv}',
+        'turn off mute',
     ]
 }, SwitchDeviceUnmute);
 
@@ -50,8 +53,9 @@ app.intent('LaunchDeviceApp', {
         'app_id': 'APP_IDS'
     },
     'utterances': [
-        '{starte|öffne} die {app|anwendung} {-|app_id}',
-        '{starte|öffne} die {-|app_id} {app|anwendung}',
+        ' to open {-|app_id}',
+        '{start|open} the {app|application} {-|app_id}',
+        '{start|open} the {-|app_id} {app|application}',
     ]
 }, LaunchDeviceApp);
 
@@ -60,31 +64,32 @@ app.intent('SwitchDeviceInput', {
         'input_id': 'INPUT_IDS'
     },
     'utterances': [
-        'wechsle {eingang|input} {zu|nach} {-|input_id}',
-        'wechsle {zu|zur|zum} {-|input_id}',
+        'change input to {-|input_id}',
+        'switch {to|to the} {-|input_id}',
     ]
 }, SwitchDeviceInput);
 
 app.intent('ControlDeviceMediaPlay', {
     'slots': {},
     'utterances': [
-        'starte wiedergabe',
-        'setze wiedergabe fort',
+        '{start|resume} playback',
+        'play { |show}',
+        'resume',
     ]
 }, ControlDeviceMediaPlay);
 
 app.intent('ControlDeviceMediaPause', {
     'slots': {},
     'utterances': [
-        'pausiere wiedergabe',
+        'pause { | show | playback}',
     ]
 }, ControlDeviceMediaPause);
 
 app.intent('ControlDeviceMediaStop', {
     'slots': {},
     'utterances': [
-        'stoppe wiedergabe',
-        'halte wiedergabe an',
+        'stop show',
+        'stop show',
     ]
 }, ControlDeviceMediaStop);
 

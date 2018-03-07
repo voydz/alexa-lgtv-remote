@@ -7,16 +7,20 @@ const appDictionary = {
     'netflix': 'netflix',
     'google': 'googleplaymovieswebos',
     'youtube': 'youtube.leanback.v4',
+    'hulu': 'hulu',
+    'sling': 'com.movenetworks.app.sling-tv-sling-production',
 
     // inputs
     'hdmi1': 'com.webos.app.hdmi1',
     'hdmi2': 'com.webos.app.hdmi2',
     'hdmi3': 'com.webos.app.hdmi3',
+    'hdmi4': 'com.webos.app.hdmi4',
 
     // custom stuff
-    'entertain': 'com.webos.app.hdmi1',
-    'appletv': 'com.webos.app.hdmi2',
+    'dvd': 'com.webos.app.hdmi1',
+    'chromecast': 'com.webos.app.hdmi2',
     'playstation': 'com.webos.app.hdmi3',
+    'ps4':'com.webos.app.hdmi4'
 };
 
 class Lookup {

@@ -19,14 +19,14 @@ const manager = new Manager({
 export function TurnDeviceOn(request: Object, response: Object) {
 
     if (manager.isConnected())
-        return response.say('Das gerät ist bereits eingeschaltet.');
+        return response.say('The device is already switched on.');
 
     return manager.remote.turnOn()
         .then(() => {
             return response.say('OK.');
         }, (err) => {
             console.log(err);
-            return response.say('Es ist ein problem mit dem gerät aufgetreten.');
+            return response.say('There is a problem with the device.');
         });
 }
 
@@ -34,14 +34,14 @@ export function TurnDeviceOff(request: Object, response: Object) {
     // TODO ad-hoc connect in manager?
 
     if (!manager.isConnected())
-        return response.say('Das gerät ist bereits ausgeschaltet.');
+        return response.say('The device is already switched off.');
 
     return manager.remote.turnOff()
         .then(() => {
             return response.say('OK.');
         }, (err) => {
             console.log(err);
-            return response.say('Es ist ein problem mit dem gerät aufgetreten.');
+            return response.say('There is a problem with the device.');
         });
 }
 
@@ -52,14 +52,14 @@ const deviceAudioMute = (request: Object, response: Object, state: boolean) => {
     // TODO ad-hoc connect in manager?
 
     if (!manager.isConnected())
-        return response.say('Das gerät ist ausgeschaltet.');
+        return response.say('The device is switched off.');
 
     return manager.remote.audioMute(state)
         .then(() => {
             return response.say('OK.');
         }, (err) => {
             console.log(err);
-            return response.say('Es ist ein problem mit dem gerät aufgetreten.');
+            return response.say('There is a problem with the device.');
         });
 };
 
@@ -79,14 +79,14 @@ const deviceLaunchApp = (request: Object, response: Object, appId: string) => {
     // TODO ad-hoc connect in manager?
 
     if (!manager.isConnected())
-        return response.say('Das gerät ist ausgeschaltet.');
+        return response.say('The device is switched off.');
 
     return manager.remote.startApp(appId)
         .then(() => {
             return response.say('OK.');
         }, (err) => {
             console.log(err);
-            return response.say('Es ist ein problem mit dem gerät aufgetreten.');
+            return response.say('There is a problem with the device.');
         });
 };
 
@@ -108,14 +108,14 @@ export function ControlDeviceMediaPlay(request: Object, response: Object) {
     // TODO ad-hoc connect in manager?
 
     if (!manager.isConnected())
-        return response.say('Das gerät ist ausgeschaltet.');
+        return response.say('The device is switched off.');
 
     return manager.remote.mediaPlay()
         .then(() => {
             return response.say('OK.');
         }, (err) => {
             console.log(err);
-            return response.say('Es ist ein problem mit dem gerät aufgetreten.');
+            return response.say('There is a problem with the device.');
         });
 }
 
@@ -123,14 +123,14 @@ export function ControlDeviceMediaPause(request: Object, response: Object) {
     // TODO ad-hoc connect in manager?
 
     if (!manager.isConnected())
-        return response.say('Das gerät ist ausgeschaltet.');
+        return response.say('The device is switched off.');
 
     return manager.remote.mediaPause()
         .then(() => {
             return response.say('OK.');
         }, (err) => {
             console.log(err);
-            return response.say('Es ist ein problem mit dem gerät aufgetreten.');
+            return response.say('There is a problem with the device.');
         });
 }
 
@@ -138,13 +138,13 @@ export function ControlDeviceMediaStop(request: Object, response: Object) {
     // TODO ad-hoc connect in manager?
 
     if (!manager.isConnected())
-        return response.say('Das gerät ist ausgeschaltet.');
+        return response.say('The device is switched off.');
 
     return manager.remote.mediaStop()
         .then(() => {
             return response.say('OK.');
         }, (err) => {
             console.log(err);
-            return response.say('Es ist ein problem mit dem gerät aufgetreten.');
+            return response.say('There is a problem with the device.');
         });
 }

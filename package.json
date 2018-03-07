@@ -8,7 +8,7 @@
     "test": "gulp lint",
     "dev": "flow-typed install && npm run start",
     "watch": "gulp serve",
-    "docs": "gulp build && dist/bin/docgen.js"
+    "docs": "gulp build && node dist/bin/docgen.js"
   },
   "repository": {
     "type": "git",
@@ -34,7 +34,7 @@
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.1",
-    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",
     "eslint": "^4.15.0",
     "eslint-config-google": "^0.9.1",

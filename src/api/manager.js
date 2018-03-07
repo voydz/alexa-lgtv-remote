@@ -6,7 +6,7 @@ import Connector from './connector';
 
 const internalConfig = {
     reconnect: false,
-    timout: 2000,
+    timout: 3000,
 };
 
 class Manager {
