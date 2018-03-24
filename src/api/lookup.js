@@ -9,6 +9,7 @@ const appDictionary = {
     'youtube': 'youtube.leanback.v4',
     'hulu': 'hulu',
     'sling': 'com.movenetworks.app.sling-tv-sling-production',
+    'live': 'com.webos.app.livetv',
 
     // inputs
     'hdmi1': 'com.webos.app.hdmi1',

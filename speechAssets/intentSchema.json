@@ -1,43 +1,115 @@
 {
-   "intents": [
-      {
-         "intent": "TurnDeviceOn"
-      },
-      {
-         "intent": "TurnDeviceOff"
-      },
-      {
-         "intent": "SwitchDeviceMute"
-      },
-      {
-         "intent": "SwitchDeviceUnmute"
-      },
-      {
-         "intent": "LaunchDeviceApp",
-         "slots": [
+   "interactionModel": {
+      "languageModel": {
+         "intents": [
             {
-               "name": "app_id",
-               "type": "APP_IDS"
-            }
-         ]
-      },
-      {
-         "intent": "SwitchDeviceInput",
-         "slots": [
+               "name": "TurnDeviceOn",
+               "samples": [
+                  "on",
+                  "  turn on  ",
+                  "to turn on  ",
+                  "  turn on tv",
+                  "to turn on tv"
+               ]
+            },
             {
-               "name": "input_id",
-               "type": "INPUT_IDS"
+               "name": "TurnDeviceOff",
+               "samples": [
+                  "off",
+                  "  turn off  ",
+                  "to turn off  ",
+                  "  turn off tv",
+                  "to turn off tv"
+               ]
+            },
+            {
+               "name": "SwitchDeviceMute",
+               "samples": [
+                  "  mute  ",
+                  "to mute  ",
+                  "  mute tv",
+                  "to mute tv",
+                  "turn on mute"
+               ]
+            },
+            {
+               "name": "SwitchDeviceUnmute",
+               "samples": [
+                  "  un mute  ",
+                  " to un mute  ",
+                  "  unmute  ",
+                  " to unmute  ",
+                  "  un mute tv",
+                  " to un mute tv",
+                  "  unmute tv",
+                  " to unmute tv",
+                  "turn off mute"
+               ]
+            },
+            {
+               "name": "LaunchDeviceApp",
+               "samples": [
+                  " to open {app_id}",
+                  "start the app {app_id}",
+                  "open the app {app_id}",
+                  "start the application {app_id}",
+                  "open the application {app_id}",
+                  "start the {app_id} app",
+                  "open the {app_id} app",
+                  "start the {app_id} application",
+                  "open the {app_id} application"
+               ],
+               "slots": [
+                  {
+                     "name": "app_id",
+                     "type": "APP_IDS",
+                     "samples": []
+                  }
+               ]
+            },
+            {
+               "name": "SwitchDeviceInput",
+               "samples": [
+                  "change input to {input_id}",
+                  "switch to {input_id}",
+                  "switch to the {input_id}"
+               ],
+               "slots": [
+                  {
+                     "name": "input_id",
+                     "type": "INPUT_IDS",
+                     "samples": []
+                  }
+               ]
+            },
+            {
+               "name": "ControlDeviceMediaPlay",
+               "samples": [
+                  "start playback",
+                  "resume playback",
+                  "play  ",
+                  "play show",
+                  "resume"
+               ]
+            },
+            {
+               "name": "ControlDeviceMediaPause",
+               "samples": [
+                  "pause  ",
+                  "pause  show ",
+                  "pause  playback"
+               ]
+            },
+            {
+               "name": "ControlDeviceMediaStop",
+               "samples": [
+                  "stop show",
+                  "stop show"
+               ]
             }
-         ]
-      },
-      {
-         "intent": "ControlDeviceMediaPlay"
-      },
-      {
-         "intent": "ControlDeviceMediaPause"
-      },
-      {
-         "intent": "ControlDeviceMediaStop"
+         ],
+         "types": [],
+         "invocationName": "lgtv-remote"
       }
-   ]
+   }
 }

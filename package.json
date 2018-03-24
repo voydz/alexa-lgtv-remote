@@ -24,7 +24,7 @@
   "author": "voydz",
   "license": "MIT",
   "dependencies": {
-    "alexa-app": "^4.2.0",
+    "alexa-app": "^4.2.1",
     "dotenv": "^4.0.0",
     "express": "^4.14.1",
     "lgtv2": "^1.2.0",
@@ -41,7 +41,7 @@
     "eslint-plugin-flowtype": "^2.30.3",
     "flow-bin": "^0.63.1",
     "flow-typed": "^2.0.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-babel": "^7.0.0",
     "gulp-eslint": "^4.0.1",
     "merge-stream": "^1.0.1",

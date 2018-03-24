@@ -22,7 +22,7 @@ class Docgen {
     }
 
     saveSchema(): void {
-        var schema = this.alexaApp.schema();
+        var schema = this.alexaApp.schemas.askcli();
         this.writeFile(this.config.schema_path, schema);
     }
 
