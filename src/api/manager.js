@@ -4,6 +4,7 @@
 import Remote from './remote';
 import Connector from './connector';
 
+    
 const internalConfig = {
     reconnect: false,
     timout: 3000,

@@ -37,12 +37,15 @@ function builder () {
         .pipe(babel())
         .pipe(gulp.dest('dist/'));
 
-    return merge(src, bin, index);
+    var locales = gulp.src('src/locales/**/*')
+        .pipe(gulp.dest('dist/src/locales'));
+
+    return merge(src, bin, index, locales);
 }
 
 
 function watcher() {
-    var watcher=gulp.watch(['index.js','bin/**/*.js','src/**/*.js',], gulp.series('build')); //watch these files and then build after
+    var watcher=gulp.watch(['index.js','bin/**/*.js','src/locales/**/*','src/**/*.js',], gulp.series('build')); //watch these files and then build after
     watcher.on('all', function(event, path) {
         console.log('File ' + path + ' was ' + event + ', starting build tasks...');
     });

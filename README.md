@@ -5,7 +5,7 @@
 # Alexa LG TV Remote
 >>>>>>> Updated intentSchema JSON creation to reflect use of Amazon's new interactive builder and updated README
 
-This is the english fork for voydz's original German version [here](https://github.com/voydz/alexa-lgtv-remote).
+This is a fork of voydz's original German version [here](https://github.com/voydz/alexa-lgtv-remote), this version localizes both English and German.
 Control your webOS powered LG TV with amazon's alexa. 
 
 ## Getting Started
@@ -32,6 +32,9 @@ First of all the setup of this skill does require some  amount of developer know
     * **PORT** the port the webserver will run on.
     * **TV_MAC** mac address of your LG TV (used for wake on lan)
     * **TV_SOCKET** ip/host socket connection (used for remote control)
+    * **CALLHOME** URL to enable the application to remain 'active' on server
+    * **LANGUAGE** currently only supports constants `en` for English or `de` for German. By changing the language in this environment variable, all intentions and invocations will be in the selected language. Also when running `npm run docs`, this variable will generate new speechAssets in the selected language. 
+
 
 4. Run the app with `npm run start`.
 

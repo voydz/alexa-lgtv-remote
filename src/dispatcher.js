@@ -7,11 +7,19 @@
 require('dotenv').config();
 
 import Manager from './api/manager';
+var i18next = require('./i18next');
+var url = require('url');
+
+// Get websocket address + ip
+var tv_URL = url.parse(process.env.TV_SOCKET);
 
 const manager = new Manager({
-    url: process.env.TV_SOCKET,
+    url: tv_URL.href,
     mac: process.env.TV_MAC,
+    ip: tv_URL.host.substr(0,tv_URL.host.length-5),
+    port: tv_URL.port
 });
+
 
 /**
  * System and power
@@ -19,14 +27,14 @@ const manager = new Manager({
 export function TurnDeviceOn(request: Object, response: Object) {
 
     if (manager.isConnected())
-        return response.say('The device is already switched on.');
+        return response.say(i18next.t('Connected'));
 
     return manager.remote.turnOn()
         .then(() => {
-            return response.say('OK.');
+            return response.say(i18next.t('OK'));
         }, (err) => {
             console.log(err);
-            return response.say('There is a problem with the device.');
+            return response.say(i18next.t('DeviceProblem'));
         });
 }
 
@@ -34,14 +42,14 @@ export function TurnDeviceOff(request: Object, response: Object) {
     // TODO ad-hoc connect in manager?
 
     if (!manager.isConnected())
-        return response.say('The device is already switched off.');
+        return response.say(i18next.t('Disconnected'));
 
     return manager.remote.turnOff()
         .then(() => {
-            return response.say('OK.');
+            return response.say(i18next.t('OK'));
         }, (err) => {
             console.log(err);
-            return response.say('There is a problem with the device.');
+            return response.say(i18next.t('DeviceProblem'));
         });
 }
 
@@ -52,14 +60,14 @@ const deviceAudioMute = (request: Object, response: Object, state: boolean) => {
     // TODO ad-hoc connect in manager?
 
     if (!manager.isConnected())
-        return response.say('The device is switched off.');
+        return response.say(i18next.t('DeviceOff'));
 
     return manager.remote.audioMute(state)
         .then(() => {
-            return response.say('OK.');
+            return response.say(i18next.t('OK'));
         }, (err) => {
             console.log(err);
-            return response.say('There is a problem with the device.');
+            return response.say(i18next.t('DeviceProblem'));
         });
 };
 
@@ -79,14 +87,14 @@ const deviceLaunchApp = (request: Object, response: Object, appId: string) => {
     // TODO ad-hoc connect in manager?
 
     if (!manager.isConnected())
-        return response.say('The device is switched off.');
+        return response.say(i18next.t('DeviceOff'));
 
     return manager.remote.startApp(appId)
         .then(() => {
-            return response.say('OK.');
+            return response.say(i18next.t('OK'));
         }, (err) => {
             console.log(err);
-            return response.say('There is a problem with the device.');
+            return response.say(i18next.t('DeviceProblem'));
         });
 };
 
@@ -108,14 +116,14 @@ export function ControlDeviceMediaPlay(request: Object, response: Object) {
     // TODO ad-hoc connect in manager?
 
     if (!manager.isConnected())
-        return response.say('The device is switched off.');
+        return response.say(i18next.t('DeviceOff'));
 
     return manager.remote.mediaPlay()
         .then(() => {
-            return response.say('OK.');
+            return response.say(i18next.t('OK'));
         }, (err) => {
             console.log(err);
-            return response.say('There is a problem with the device.');
+            return response.say(i18next.t('DeviceProblem'));
         });
 }
 
@@ -123,14 +131,14 @@ export function ControlDeviceMediaPause(request: Object, response: Object) {
     // TODO ad-hoc connect in manager?
 
     if (!manager.isConnected())
-        return response.say('The device is switched off.');
+        return response.say(i18next.t('DeviceOff'));
 
     return manager.remote.mediaPause()
         .then(() => {
-            return response.say('OK.');
+            return response.say(i18next.t('OK'));
         }, (err) => {
             console.log(err);
-            return response.say('There is a problem with the device.');
+            return response.say(i18next.t('DeviceProblem'));
         });
 }
 
@@ -138,13 +146,26 @@ export function ControlDeviceMediaStop(request: Object, response: Object) {
     // TODO ad-hoc connect in manager?
 
     if (!manager.isConnected())
-        return response.say('The device is switched off.');
+        return response.say(i18next.t('DeviceOff'));
 
     return manager.remote.mediaStop()
         .then(() => {
-            return response.say('OK.');
+            return response.say(i18next.t('OK'));
         }, (err) => {
             console.log(err);
-            return response.say('There is a problem with the device.');
+            return response.say(i18next.t('DeviceProblem'));
         });
+}
+
+export function AmazonHelp(request, response) {
+    // AMAZON.HelpIntent must leave session open -> .shouldEndSession(false)
+    response.say(i18next.t('HelpOutput')).reprompt(i18next.t('RePrompt')).shouldEndSession(false);
+}
+
+export function AmazonStop(request, response) {
+    response.say(i18next.t('StopOutput'));
+}
+
+export function AmazonCancel(request, response) {
+    response.say(i18next.t('CancelOutput'));
 }

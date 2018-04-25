@@ -1,0 +1,43 @@
+{
+    "TurnDeviceOnUtterances": [
+        "{schalte|mache} {fernseher|tv|glotze} {an|ein}"
+    ],
+    "TurnDeviceOffUtterances": [
+        "{schalte|mache} {fernseher|tv|glotze} aus"
+    ],
+    "SwitchDeviceMuteUtterances": [
+        "schalte {fernseher|tv} {lautlos|stumm}"
+    ],
+    "SwitchDeviceUnmuteUtterances": [
+        "schalte {fernseher|tv} laut",
+        "hebe {lautlos|stumm|stummschaltung} auf"
+    ],
+    "LaunchDeviceAppUtterances": [
+        "{starte|öffne} die {app|anwendung} {-|app_id}",
+        "{starte|öffne} die {-|app_id} {app|anwendung}"
+    ],
+    "SwitchDeviceInputUtterances": [
+        "wechsle {eingang|input} {zu|nach} {-|input_id}",
+        "wechsle {zu|zur|zum} {-|input_id}"
+    ],
+    "ControlDeviceMediaPlayUtterances": [
+        "starte wiedergabe",
+        "setze wiedergabe fort"
+    ],
+    "ControlDeviceMediaPauseUtterances": [
+        "pausiere wiedergabe"
+    ],
+    "ControlDeviceMediaStopUtterances": [
+        "stoppe wiedergabe",
+        "halte wiedergabe an"
+    ],
+    "Connected": "Das gerät ist bereits eingeschaltet.",
+    "Disconnected" : "Das gerät ist bereits eingeschaltet.",
+    "OK": "OK.",
+    "DeviceOff" : "Das gerät ist ausgeschaltet.",
+    "DeviceProblem": "Es ist ein problem mit dem gerät aufgetreten.",
+    "HelpOutput" : "You can say \"ask lg to turn on tv\". You can also say stop or exit to quit.",
+    "RePrompt" : "What would you like to do?",
+    "StopOutput" : "OK, already!",
+    "CancelOutput" : "No problem. Request cancelled."
+}

@@ -106,6 +106,18 @@
                   "stop show",
                   "stop show"
                ]
+            },
+            {
+               "name": "AMAZON.HelpIntent",
+               "samples": []
+            },
+            {
+               "name": "AMAZON.StopIntent",
+               "samples": []
+            },
+            {
+               "name": "AMAZON.CancelIntent",
+               "samples": []
             }
          ],
          "types": [],

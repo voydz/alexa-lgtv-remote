@@ -69,7 +69,7 @@ class Remote {
     }
 
     request(command: string, payload: any): Promise {
-        // Check device connection.
+        // Check device connection. If not connectted
         this.connectedOrFail();
 
         // Log requests.
