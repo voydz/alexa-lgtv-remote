@@ -2,14 +2,32 @@
 'use strict';
 
 const appDictionary = {
-    'tv': 'com.webos.app.livetv',
-    'amazon': 'lovefilm.de',
-    'netflix': 'netflix',
+    'accessibility': 'com.webos.app.accessibility',
+    'amazon': 'amazon',
+    'cackle': 'cackle',
+    'channelplus': 'channelplus.us',
+    'deviceconnector': 'com.webos.app.connectionwizard',
+    'fandango': 'com.mgo.mgowebos',
+    'gallery': 'com.webos.app.igallery',
     'google': 'googleplaymovieswebos',
-    'youtube': 'youtube.leanback.v4',
+    'guide': 'com.webos.app.tvguide',
     'hulu': 'hulu',
-    'sling': 'com.movenetworks.app.sling-tv-sling-production',
+    'lgstore': 'com.webos.app.discovery',
     'live': 'com.webos.app.livetv',
+    'music': 'com.webos.app.music',
+    'netflix': 'netflix',
+    'notifications': 'com.webos.app.notificationcenter',
+    'photo': 'com.webos.app.photovideo',
+    'plex': 'cdp-30',
+    'screenshare': 'com.webos.app.miracast',
+    'search': 'com.webos.app.voice',
+    'sling': 'com.movenetworks.app.sling-tv-sling-production',
+    'tv': 'com.webos.app.livetv',
+    'tvscheduler': 'com.webos.app.scheduler',
+    'userguide': 'com.webos.app.tvuserguide',
+    'vudu': 'vudu',
+    'webbrowser': 'com.webos.app.browser',
+    'youtube': 'youtube.leanback.v4',
 
     // inputs
     'hdmi1': 'com.webos.app.hdmi1',
@@ -21,15 +39,16 @@ const appDictionary = {
     'dvd': 'com.webos.app.hdmi1',
     'chromecast': 'com.webos.app.hdmi2',
     'playstation': 'com.webos.app.hdmi3',
-    'ps4':'com.webos.app.hdmi4'
+    'ps4':'com.webos.app.hdmi4',
 };
 
 class Lookup {
 
     static app(app: string): string {
         // Some sanity operations first.
+
         app = app.toLowerCase();
-        app = app.replace(/[^a-z]/gi, '');
+        app = app.replace(/[^a-z1-9]/gi, '');
 
         console.log('try to resolve app ' + app);
 
