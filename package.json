@@ -28,7 +28,7 @@
     "dotenv": "^5.0.1",
     "express": "^4.14.1",
     "i18next": "^11.2.3",
-    "i18next-sync-fs-backend": "^1.0.0",
+    "i18next-sync-fs-backend": "^1.1.0",
     "lgtv2": "^1.2.0",
     "promise": "^8.0.1",
     "wake_on_lan": "^0.0.4"
@@ -41,7 +41,7 @@
     "eslint": "^4.15.0",
     "eslint-config-google": "^0.9.1",
     "eslint-plugin-flowtype": "^2.46.3",
-    "flow-bin": "^0.63.1",
+    "flow-bin": "^0.72.0",
     "flow-typed": "^2.0.0",
     "gulp": "^4.0.0",
     "gulp-babel": "^7.0.0",

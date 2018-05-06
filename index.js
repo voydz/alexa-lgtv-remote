@@ -3,7 +3,7 @@
 
 require('dotenv').config();
 const port = process.env.PORT || '3000';
-const callHome = process.env.CALLHOME;
+const callHome = process.env.CALLHOME || 'http://google-public-dns-a.google.com/';
 
 import alexaApp from './src/app';
 import express from 'express';

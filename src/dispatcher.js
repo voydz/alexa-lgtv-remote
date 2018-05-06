@@ -9,13 +9,15 @@ require('dotenv').config();
 import Manager from './api/manager';
 var i18next = require('./i18next');
 var url = require('url');
+const tv_socket = process.env.TV_SOCKET || 'ws://lgwebostv:3000';
+const tv_mac=process.env.TV_MAC || '00:00:00:00:00';
 
 // Get websocket address + ip
-var tv_URL = url.parse(process.env.TV_SOCKET);
+const tv_URL = url.parse(tv_socket);
 
 const manager = new Manager({
     url: tv_URL.href,
-    mac: process.env.TV_MAC,
+    mac: tv_mac,
     ip: tv_URL.host.substr(0,tv_URL.host.length-5),
     port: tv_URL.port
 });
