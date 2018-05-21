@@ -11,6 +11,7 @@ var i18next = require('./i18next');
 var url = require('url');
 const tv_socket = process.env.TV_SOCKET || 'ws://lgwebostv:3000';
 const tv_mac=process.env.TV_MAC || '00:00:00:00:00';
+const debug=process.env.LGDEBUG;
 
 // Get websocket address + ip
 const tv_URL = url.parse(tv_socket);
@@ -19,7 +20,8 @@ const manager = new Manager({
     url: tv_URL.href,
     mac: tv_mac,
     ip: tv_URL.host.substr(0,tv_URL.host.length-5),
-    port: tv_URL.port
+    port: tv_URL.port,
+    debug: debug
 });
 
 
@@ -31,11 +33,15 @@ export function TurnDeviceOn(request: Object, response: Object) {
     if (manager.isConnected())
         return response.say(i18next.t('Connected'));
 
+    // checked if connected, and now will attempt turnOn()
+    if (debug) {console.log('Not yet connected, returning remote.turnon ');}
+
     return manager.remote.turnOn()
         .then(() => {
+            if (debug) {console.log('turned on without error ');}
             return response.say(i18next.t('OK'));
         }, (err) => {
-            console.log(err);
+            if (debug) {console.log('problem after turning on: ' +err);}
             return response.say(i18next.t('DeviceProblem'));
         });
 }

@@ -53,6 +53,7 @@ class Remote {
         return this.connector.wake()
             .then(() => {
                 console.log('Executing turnOn');
+                if (this.connector.config.debug) {console.log('Config at TurnOn Promise: \n\t%o', this.connector.config);}
                 // Auto connect.
                 return this.connector.connect();
             });

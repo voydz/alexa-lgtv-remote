@@ -2853,7 +2853,7 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-lgtv2@^1.2.0:
+lgtv2@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/lgtv2/-/lgtv2-1.4.1.tgz#f45aacf697862d2bc572faf34af8b144dec29dc3"
   dependencies:
@@ -4567,9 +4567,11 @@ vinyl@^2.0.0:
     remove-trailing-separator "^1.0.1"
     replace-ext "^1.0.0"
 
-wake_on_lan@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/wake_on_lan/-/wake_on_lan-0.0.4.tgz#4ca51f130409598aa4e38426cc3ea076d7058643"
+wake_on_lan@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/wake_on_lan/-/wake_on_lan-1.0.0.tgz#516519ee5ab41a652d79c8bd5704fce6ecd4cdb2"
+  dependencies:
+    minimist "^1.2.0"
 
 websocket@^1.0.24:
   version "1.0.25"
