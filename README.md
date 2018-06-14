@@ -1,11 +1,10 @@
 
 
-# Alexa LG TV Remote [![Build Status](https://travis-ci.org/pparedes1/alexa-lgtv-remote.svg?branch=master)](https://travis-ci.org/pparedes1/alexa-lgtv-remote) [![Greenkeeper badge](https://badges.greenkeeper.io/pparedes1/alexa-lgtv-remote.svg)](https://greenkeeper.io/)
+# Alexa LG TV Remote [![Build Status](https://travis-ci.org/voydz/alexa-lgtv-remote.svg?branch=master)](https://travis-ci.org/voydz/alexa-lgtv-remote) [![Greenkeeper badge](https://badges.greenkeeper.io/pparedes1/alexa-lgtv-remote.svg)](https://greenkeeper.io/)
 
 
 
-This is a fork of voydz's original German version [here](https://github.com/voydz/alexa-lgtv-remote), this version localizes both English and German languages.
-Control your webOS powered LG TV with amazon's alexa. 
+Control your webOS powered LG TV with amazon's alexa. This is a small DIY smart home project born out of lazyness and curiosity. It currently supports English and German invocations to control your device. 
 
 ## Getting Started
 
@@ -32,6 +31,7 @@ First of all the setup of this skill does require some  amount of developer know
     * **TV_MAC** mac address of your LG TV (used for wake on lan)
     * **TV_SOCKET** ip/host socket connection (used for remote control)
     * **CALLHOME** URL to enable the application to remain 'active' on server
+    * **LGDEBUG** setting  this value will trigger more output for debugging purposes to the console (optional)
     * **LANGUAGE** currently only supports constants `en` for English or `de` for German. By changing the language in this environment variable, all intentions and invocations will be in the selected language. Also when running `npm run docs`, this variable will generate new speechAssets in the selected language. 
 
 

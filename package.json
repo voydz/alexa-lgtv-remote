@@ -24,7 +24,7 @@
   "author": "voydz",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pparedes1/alexa-lgtv-remote/issues"
+    "url": "https://github.com/voydz/alexa-lgtv-remote/issues"
   },
   "dependencies": {
     "alexa-app": "^4.2.2",
