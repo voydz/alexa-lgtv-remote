@@ -12,15 +12,19 @@ class Connector {
 
     constructor(config: Object) {
         this.config = config;
-
+        
         // set default vals
         this.connected = false;
     }
 
     wake(): Promise {
         return new Promise((fulfill, reject) => {
-            wol.wake(this.config.mac, (err) => {
-                if (err) reject(err);
+            if (this.config.debug) {console.log('trying to wake now, config %o:', this.config);}
+            wol.wake(this.config.mac, {address:this.config.ip, port:this.config.port, num_packets:10}, (err) => {
+                if (err) {
+                    console.log('Rejected WOL: ' + err);
+                    reject(err);
+                }
                 else fulfill();
             });
         });
@@ -29,17 +33,19 @@ class Connector {
     connect(): Promise {
         // Connect to the device.
         this.tv = lgtv(this.config);
-
+        if (this.config.debug) {console.log('Config Connect_promise: \n\t%o', this.config);}
         return new Promise((fulfill, reject) => {
             this.tv.on('error', (err) => {
                 // Connection lost watcher.
                 this.connected = false;
+                console.log('Error Connecting: ' + err);
                 reject(err);
             });
 
             this.tv.on('connect', () => {
                 // Set connection state.
                 this.connected = true;
+                console.log('Config in on_connect.Promise: %o', this.config);
                 fulfill(this.tv);
             });
         });
@@ -54,7 +60,8 @@ class Connector {
                 // Set connection state.
                 this.connected = false;
 
-                if (err) reject(err);
+                //check if closed normally and fulfill request
+                if (err && err!=1000) reject(err);
                 else fulfill();
             });
         });

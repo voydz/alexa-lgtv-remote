@@ -10,82 +10,80 @@ import {
     SwitchDeviceInput,
     ControlDeviceMediaPlay,
     ControlDeviceMediaPause,
-    ControlDeviceMediaStop
+    ControlDeviceMediaStop,
+    AmazonHelp,
+    AmazonStop,
+    AmazonCancel
 } from './dispatcher';
 
 import alexa from 'alexa-app';
 const app = new alexa.app('lgtv-remote');
+var i18next = require('./i18next');
+
+
 
 app.intent('TurnDeviceOn', {
     'slots': {},
-    'utterances': [
-        '{schalte|mache} {fernseher|tv|glotze} {an|ein}',
-    ]
+    'utterances': i18next.t('TurnDeviceOnUtterances', { returnObjects: true })
 }, TurnDeviceOn);
 
 app.intent('TurnDeviceOff', {
     'slots': {},
-    'utterances': [
-        '{schalte|mache} {fernseher|tv|glotze} aus',
-    ]
+    'utterances': i18next.t('TurnDeviceOffUtterances', { returnObjects: true })
 }, TurnDeviceOff);
 
 app.intent('SwitchDeviceMute', {
     'slots': {},
-    'utterances': [
-        'schalte {fernseher|tv} {lautlos|stumm}',
-    ]
+    'utterances': i18next.t('SwitchDeviceMuteUtterances', { returnObjects: true })
 }, SwitchDeviceMute);
 
 app.intent('SwitchDeviceUnmute', {
     'slots': {},
-    'utterances': [
-        'schalte {fernseher|tv} laut',
-        'hebe {lautlos|stumm|stummschaltung} auf',
-    ]
+    'utterances': i18next.t('SwitchDeviceUnmuteUtterances', { returnObjects: true })
 }, SwitchDeviceUnmute);
 
 app.intent('LaunchDeviceApp', {
     'slots': {
         'app_id': 'APP_IDS'
     },
-    'utterances': [
-        '{starte|öffne} die {app|anwendung} {-|app_id}',
-        '{starte|öffne} die {-|app_id} {app|anwendung}',
-    ]
+    'utterances': i18next.t('LaunchDeviceAppUtterances', { returnObjects: true })
 }, LaunchDeviceApp);
 
 app.intent('SwitchDeviceInput', {
     'slots': {
         'input_id': 'INPUT_IDS'
     },
-    'utterances': [
-        'wechsle {eingang|input} {zu|nach} {-|input_id}',
-        'wechsle {zu|zur|zum} {-|input_id}',
-    ]
+    'utterances': i18next.t('SwitchDeviceInputUtterances', { returnObjects: true })
 }, SwitchDeviceInput);
 
 app.intent('ControlDeviceMediaPlay', {
     'slots': {},
-    'utterances': [
-        'starte wiedergabe',
-        'setze wiedergabe fort',
-    ]
+    'utterances': i18next.t('ControlDeviceMediaPlayUtterances', { returnObjects: true })
 }, ControlDeviceMediaPlay);
 
 app.intent('ControlDeviceMediaPause', {
     'slots': {},
-    'utterances': [
-        'pausiere wiedergabe',
-    ]
+    'utterances': i18next.t('ControlDeviceMediaPauseUtterances', { returnObjects: true })
 }, ControlDeviceMediaPause);
 
 app.intent('ControlDeviceMediaStop', {
     'slots': {},
-    'utterances': [
-        'stoppe wiedergabe',
-        'halte wiedergabe an',
-    ]
+    'utterances': i18next.t('ControlDeviceMediaStopUtterances', { returnObjects: true })
 }, ControlDeviceMediaStop);
+
+app.intent('AMAZON.HelpIntent', {
+    'slots': {},
+    'utterances': []
+}, AmazonHelp);
+
+app.intent('AMAZON.StopIntent', {
+    'slots': {},
+    'utterances': []
+}, AmazonStop);
+
+app.intent('AMAZON.CancelIntent', {
+    'slots': {},
+    'utterances': []
+}, AmazonCancel);
 
 export default app;

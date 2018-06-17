@@ -8,7 +8,7 @@
     "test": "gulp lint",
     "dev": "flow-typed install && npm run start",
     "watch": "gulp serve",
-    "docs": "gulp build && dist/bin/docgen.js"
+    "docs": "gulp build && node dist/bin/docgen.js"
   },
   "repository": {
     "type": "git",
@@ -23,28 +23,33 @@
   ],
   "author": "voydz",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/voydz/alexa-lgtv-remote/issues"
+  },
   "dependencies": {
-    "alexa-app": "^4.2.0",
-    "dotenv": "^4.0.0",
+    "alexa-app": "^4.2.2",
+    "dotenv": "^5.0.1",
     "express": "^4.14.1",
-    "lgtv2": "^1.2.0",
+    "i18next": "^11.2.3",
+    "i18next-sync-fs-backend": "^1.1.0",
+    "lgtv2": "^1.4.1",
     "promise": "^8.0.1",
-    "wake_on_lan": "0.0.4"
+    "wake_on_lan": "^1.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
-    "babel-eslint": "^8.2.1",
-    "babel-preset-es2015": "^6.24.0",
+    "babel-eslint": "^8.2.3",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",
     "eslint": "^4.15.0",
     "eslint-config-google": "^0.9.1",
-    "eslint-plugin-flowtype": "^2.30.3",
-    "flow-bin": "^0.63.1",
+    "eslint-plugin-flowtype": "^2.46.3",
+    "flow-bin": "^0.72.0",
     "flow-typed": "^2.0.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-babel": "^7.0.0",
     "gulp-eslint": "^4.0.1",
     "merge-stream": "^1.0.1",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.17.3"
   }
 }

@@ -30,6 +30,7 @@ class Remote {
 
     startApp(app: string): Promise {
         const appId = Lookup.app(app);
+        console.log('Starting: ' + appId);
         return this.request('ssap://system.launcher/launch', {id: appId});
     }
 
@@ -51,6 +52,8 @@ class Remote {
         // To turn device on we use wake on lan.
         return this.connector.wake()
             .then(() => {
+                console.log('Executing turnOn');
+                if (this.connector.config.debug) {console.log('Config at TurnOn Promise: \n\t%o', this.connector.config);}
                 // Auto connect.
                 return this.connector.connect();
             });
@@ -60,12 +63,14 @@ class Remote {
         return this.request('ssap://system/turnOff')
             .then(() => {
                 // Auto disconnect.
+                console.log('Executing turnOff');
+
                 return this.connector.disconnect();
             });
     }
 
     request(command: string, payload: any): Promise {
-        // Check device connection.
+        // Check device connection. If not connectted
         this.connectedOrFail();
 
         // Log requests.

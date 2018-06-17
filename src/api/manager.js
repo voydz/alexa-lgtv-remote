@@ -4,9 +4,10 @@
 import Remote from './remote';
 import Connector from './connector';
 
+    
 const internalConfig = {
     reconnect: false,
-    timout: 2000,
+    timout: 3000,
 };
 
 class Manager {
@@ -22,9 +23,11 @@ class Manager {
         // Try to connect.
         this.connector.connect()
             .then(() => {
+                if(this.config.debug){console.log('Connected to TV');}
+                console.log('Config in connect.constructor: %o', this.config);
                 this.connector.connected = true;
             }, (err) => {
-                console.log(err);
+                if(this.config.debug){console.log('Manager.contructor error: '+ err);}
                 this.connector.connected = false;
             });
     }

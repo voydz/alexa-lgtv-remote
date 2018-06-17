@@ -1,0 +1,48 @@
+{
+    "TurnDeviceOnUtterances": [
+    	"on", 
+        "{ |to} turn on { |tv}"
+    ],
+    "TurnDeviceOffUtterances": [
+        "off",
+        "{ |to} turn off { |tv}"
+    ],
+    "SwitchDeviceMuteUtterances": [
+    	"{ |to} mute { |tv}",
+        "turn on mute"
+    ],
+    "SwitchDeviceUnmuteUtterances": [
+        "{ | to} {un mute|unmute} { |tv}",
+        "turn off mute"
+    ],
+    "LaunchDeviceAppUtterances": [
+        " to open {-|app_id}",
+        "{start|open} the {app|application} {-|app_id}",
+        "{start|open} the {-|app_id} {app|application}"
+    ],
+    "SwitchDeviceInputUtterances": [
+        "change input to {-|input_id}",
+        "switch {to|to the} {-|input_id}"
+    ],
+    "ControlDeviceMediaPlayUtterances": [
+        "{start|resume} playback",
+        "play { |show}",
+        "resume"
+    ],
+    "ControlDeviceMediaPauseUtterances": [
+        "pause { | show | playback}"
+    ],
+    "ControlDeviceMediaStopUtterances": [
+        "stop show",
+        "stop show"
+    ],
+    "Connected" : "Connected.",
+    "Disconnected" : "Disconnected.",
+    "OK" : "OK.",
+    "DeviceOff" : "The device is switched off.",
+    "DeviceProblem" : "There is a problem with the device.",
+    "HelpOutput" : "You can say \"ask lg to turn on tv\". You can also say stop or exit to quit.",
+    "RePrompt" : "What would you like to do?",
+    "StopOutput" : "OK, already!",
+    "CancelOutput" : "No problem. Request cancelled."
+}
